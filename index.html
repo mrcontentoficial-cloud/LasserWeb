@@ -196,7 +196,7 @@ section{padding:88px 0}
 nav.main{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.92);
   backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
 nav.main.scrolled{box-shadow:var(--shadow)}
-nav.main .container{display:flex;align-items:center;justify-content:space-between;height:74px;gap:16px}
+nav.main .container{display:flex;align-items:center;justify-content:space-between;height:92px;gap:16px}
 .nav-links{display:flex;align-items:center;gap:18px;flex-wrap:nowrap}
 .nav-links a{font-weight:500;font-size:.9rem;color:var(--soft);transition:color .2s;position:relative;white-space:nowrap}
 .nav-links a:hover{color:var(--ink)}
@@ -211,8 +211,8 @@ nav.main .container{display:flex;align-items:center;justify-content:space-betwee
 
 /* LOGO */
 .logo{display:flex;align-items:center;gap:12px}
-.logo-img{height:54px;width:auto;display:block}
-@media(max-width:520px){.logo-img{height:46px}}
+.logo-img{height:76px;width:auto;display:block}
+@media(max-width:520px){.logo-img{height:58px}}
 .logo .lo-svg{width:46px;height:46px;flex-shrink:0}
 .logo .lo-text{display:flex;flex-direction:column;line-height:1.05}
 .logo .lo-name{font-family:'Sora';font-weight:800;font-size:1.05rem;letter-spacing:.01em;
@@ -309,7 +309,7 @@ nav.main .container{display:flex;align-items:center;justify-content:space-betwee
 .marquee{display:flex;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .marquee-track{display:flex;gap:54px;padding-right:54px;flex-shrink:0;will-change:transform}
-.brand-name{font-family:'Sora';font-weight:700;font-size:1.32rem;color:#aab2c6;
+.brand-name{font-family:'Sora';font-weight:700;font-size:1.32rem;color:var(--ink);
   white-space:nowrap;transition:color .25s;display:inline-flex;align-items:center;gap:14px}
 .brand-name::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--blue);
   flex-shrink:0;box-shadow:0 0 6px 2px rgba(35,51,155,.55);animation:brandGlow 2.2s ease-in-out infinite}
@@ -376,7 +376,7 @@ nav.main .container{display:flex;align-items:center;justify-content:space-betwee
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 @media(max-width:860px){.steps{grid-template-columns:1fr}}
 .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px;position:relative}
-.step .sn{font-family:'Sora';font-weight:800;font-size:2.6rem;color:var(--blue);opacity:.16;line-height:1}
+.step .sn{font-family:'Sora';font-weight:800;font-size:2.6rem;color:var(--ink);opacity:.9;line-height:1}
 .step .sic{width:50px;height:50px;border-radius:12px;background:var(--bg-alt);display:flex;
   align-items:center;justify-content:center;margin:-30px 0 16px auto}
 .step .sic svg{width:28px;height:28px;color:var(--red)}
@@ -533,6 +533,9 @@ details .ans{padding:0 24px 24px;color:var(--soft);font-size:.97rem}
 
 /* ===================== FOOTER ===================== */
 footer{background:#070d1f;color:#aeb8d6;padding:60px 0 28px;font-size:.9rem}
+.foot-logo{display:inline-block;background:#fff;border-radius:16px;padding:16px 20px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.foot-logo img{height:74px;width:auto;display:block}
+@media(max-width:520px){.foot-logo img{height:60px}}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1.3fr;gap:40px;margin-bottom:40px}
 @media(max-width:780px){.foot-grid{grid-template-columns:1fr;gap:30px}}
 footer .logo .lo-name .d{color:#fff}
@@ -835,7 +838,7 @@ footer .fcities{color:#8b96b8;line-height:1.8}
       <span class="kicker">// Para mantenimiento</span>
       <h2 style="font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:16px">Hecho para jefes e ingenieros de mantenimiento</h2>
       <p style="color:var(--soft);font-size:1.06rem;margin-bottom:26px">Sabemos lo que significa tener una línea detenida con un drive quemado y un proveedor OEM que cotiza a 10 semanas. Hablas directo con ingenieros que entienden tu planta, no con un mostrador.</p>
-      <a class="btn btn-wa" href="https://wa.me/524621128494?text=Hola%2C%20soy%20de%20mantenimiento%20y%20quiero%20contarles%20una%20falla.%20Equipo%3A%20%2C%20marca%3A%20%2C%20s%C3%ADntoma%3A%20" target="_blank" rel="noopener">
+      <a class="btn btn-wa" style="margin-bottom:34px" href="https://wa.me/524621128494?text=Hola%2C%20soy%20de%20mantenimiento%20y%20quiero%20contarles%20una%20falla.%20Equipo%3A%20%2C%20marca%3A%20%2C%20s%C3%ADntoma%3A%20" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
         Cuéntanos tu falla
       </a>
@@ -1114,23 +1117,8 @@ footer .fcities{color:#8b96b8;line-height:1.8}
   <div class="container">
     <div class="foot-grid">
       <div>
-        <div class="logo">
-          <svg class="lo-svg" viewBox="0 0 64 64" aria-hidden="true">
-            <circle cx="32" cy="32" r="22" fill="none" stroke="#E11D2A" stroke-width="3.4"/>
-            <line x1="32" y1="3" x2="32" y2="16" stroke="#E11D2A" stroke-width="3.4" stroke-linecap="round"/>
-            <line x1="32" y1="48" x2="32" y2="61" stroke="#E11D2A" stroke-width="3.4" stroke-linecap="round"/>
-            <line x1="3" y1="32" x2="16" y2="32" stroke="#E11D2A" stroke-width="3.4" stroke-linecap="round"/>
-            <line x1="48" y1="32" x2="61" y2="32" stroke="#E11D2A" stroke-width="3.4" stroke-linecap="round"/>
-            <rect x="25" y="25" width="14" height="14" rx="2" fill="none" stroke="#E11D2A" stroke-width="3.2"/>
-            <line x1="30" y1="28" x2="30" y2="36" stroke="#E11D2A" stroke-width="3.2" stroke-linecap="round"/>
-            <line x1="34" y1="28" x2="34" y2="36" stroke="#E11D2A" stroke-width="3.2" stroke-linecap="round"/>
-            <line x1="16" y1="32" x2="25" y2="32" stroke="#E11D2A" stroke-width="3.2" stroke-linecap="round"/>
-            <line x1="39" y1="32" x2="48" y2="32" stroke="#E11D2A" stroke-width="3.2" stroke-linecap="round"/>
-          </svg>
-          <span class="lo-text">
-            <span class="lo-name"><span class="b" style="color:#7e95f0">Clínica</span> <span class="d">Electrónica</span> <span class="b" style="color:#7e95f0">Lásser</span></span>
-            <span class="lo-sub" style="color:#8b96b8">Mantenimiento Electrónico Industrial</span>
-          </span>
+        <div class="foot-logo">
+          <img src="logo-lasser.png" alt="Clínica Electrónica Lásser — Mantenimiento Electrónico Industrial" width="320" height="168">
         </div>
         <p class="fdesc">Reparación y mantenimiento de electrónica industrial a nivel componente en Irapuato y el Bajío: variadores VFD, servo drives, PLC, HMI, fuentes y tarjetas electrónicas. +20 años de experiencia.</p>
       </div>
