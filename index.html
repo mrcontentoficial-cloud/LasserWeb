@@ -211,6 +211,8 @@ nav.main .container{display:flex;align-items:center;justify-content:space-betwee
 
 /* LOGO */
 .logo{display:flex;align-items:center;gap:12px}
+.logo-img{height:54px;width:auto;display:block}
+@media(max-width:520px){.logo-img{height:46px}}
 .logo .lo-svg{width:46px;height:46px;flex-shrink:0}
 .logo .lo-text{display:flex;flex-direction:column;line-height:1.05}
 .logo .lo-name{font-family:'Sora';font-weight:800;font-size:1.05rem;letter-spacing:.01em;
@@ -589,23 +591,7 @@ footer .fcities{color:#8b96b8;line-height:1.8}
 <nav class="main" id="nav">
   <div class="container">
     <a href="#inicio" class="logo" aria-label="Clínica Electrónica Lásser - Inicio">
-      <!-- LOGO: mira de diagnóstico (crosshair) -->
-      <svg class="lo-svg" viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="32" cy="32" r="22" fill="none" stroke="#E11D2A" stroke-width="3.4"/>
-        <line x1="32" y1="3" x2="32" y2="16" stroke="#E11D2A" stroke-width="3.4" stroke-linecap="round"/>
-        <line x1="32" y1="48" x2="32" y2="61" stroke="#E11D2A" stroke-width="3.4" stroke-linecap="round"/>
-        <line x1="3" y1="32" x2="16" y2="32" stroke="#E11D2A" stroke-width="3.4" stroke-linecap="round"/>
-        <line x1="48" y1="32" x2="61" y2="32" stroke="#E11D2A" stroke-width="3.4" stroke-linecap="round"/>
-        <rect x="25" y="25" width="14" height="14" rx="2" fill="none" stroke="#E11D2A" stroke-width="3.2"/>
-        <line x1="30" y1="28" x2="30" y2="36" stroke="#E11D2A" stroke-width="3.2" stroke-linecap="round"/>
-        <line x1="34" y1="28" x2="34" y2="36" stroke="#E11D2A" stroke-width="3.2" stroke-linecap="round"/>
-        <line x1="16" y1="32" x2="25" y2="32" stroke="#E11D2A" stroke-width="3.2" stroke-linecap="round"/>
-        <line x1="39" y1="32" x2="48" y2="32" stroke="#E11D2A" stroke-width="3.2" stroke-linecap="round"/>
-      </svg>
-      <span class="lo-text">
-        <span class="lo-name"><span class="b">Clínica</span> <span class="d">Electrónica</span> <span class="b">Lásser</span></span>
-        <span class="lo-sub">Mantenimiento Electrónico Industrial</span>
-      </span>
+      <img class="logo-img" src="logo-lasser.png" alt="Clínica Electrónica Lásser — Mantenimiento Electrónico Industrial" width="320" height="168">
     </a>
     <div class="nav-links">
       <a href="#servicios">Servicios</a>
