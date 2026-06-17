@@ -1,0 +1,11 @@
+# --- Repo LasserWeb: subir SOLO el sitio de Clínica Electrónica Lásser ---
+# Ignorar todo lo de la carpeta por defecto (Mr Content, linktree, assets, etc.)
+/*
+
+# Permitir únicamente los archivos del sitio Lásser:
+!/.gitignore
+!/README.md
+!/index.html
+!/logo-lasser.png
+!/logo-lasser.svg
+!/img-lasser/
