@@ -584,8 +584,9 @@ nav.main .container{display:flex;align-items:center;justify-content:space-betwee
 .mlk.base::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--red);
   animation:mpulse 2.4s ease-out infinite}
 @keyframes mpulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.8);opacity:0}}
-/* Punto brilloso de la ciudad seleccionada: aparece, se mantiene encendido y se desvanece con blur */
-.city-flash{width:20px;height:20px;border-radius:50%;background:#fff;pointer-events:none;
+/* Punto brilloso: el contenedor lo posiciona MapLibre; el interior anima (no se mueve la posición) */
+.city-flash-wrap{width:20px;height:20px;pointer-events:none}
+.city-flash{display:block;width:20px;height:20px;border-radius:50%;background:#fff;
   box-shadow:0 0 14px 5px rgba(159,176,255,.95),0 0 30px 12px rgba(124,149,240,.6);
   animation:cityflashIn .7s ease-out both, cityGlow 2.4s ease-in-out .7s infinite}
 @keyframes cityflashIn{
@@ -597,14 +598,14 @@ nav.main .container{display:flex;align-items:center;justify-content:space-betwee
   0%,100%{box-shadow:0 0 12px 4px rgba(159,176,255,.85),0 0 24px 9px rgba(124,149,240,.5)}
   50%{box-shadow:0 0 18px 7px rgba(159,176,255,1),0 0 40px 16px rgba(124,149,240,.7)}
 }
-.city-flash--out{animation:cityflashOut .6s ease-in forwards!important}
+.city-flash-wrap.city-flash--out .city-flash{animation:cityflashOut .6s ease-in forwards!important}
 @keyframes cityflashOut{
   0%{opacity:1;filter:blur(0);transform:scale(1)}
   100%{opacity:0;filter:blur(9px);transform:scale(1.9)}
 }
 @media(prefers-reduced-motion:reduce){
   .city-flash{animation:none;opacity:1}
-  .city-flash--out{animation:none!important;opacity:0}
+  .city-flash-wrap.city-flash--out .city-flash{animation:none!important;opacity:0}
 }
 .maplibregl-popup-content{background:var(--ink);color:#fff;font-family:'Inter';font-size:.8rem;
   border-radius:8px;padding:7px 11px;box-shadow:var(--shadow-lg)}
@@ -679,34 +680,40 @@ footer .fcities{color:#8b96b8;line-height:1.8}
 /* ===================== OPTIMIZACIÓN MÓVIL ===================== */
 @media(max-width:760px){
   section{padding:52px 0}
-  .head-block{margin-bottom:30px}
-  .head-center{margin-bottom:30px}
+  .head-block{margin-bottom:28px}
+  .head-center{margin-bottom:28px}
   .head-block h2{font-size:1.7rem}
 
-  /* Barra de confianza: 2x2 compacto, ícono arriba */
-  .trustbar .container{grid-template-columns:repeat(2,1fr);gap:0}
-  .trust-item{flex-direction:column;text-align:center;align-items:center;gap:7px;padding:18px 10px}
-  .trust-item svg{width:26px;height:26px}
-  .trust-item b{font-size:.88rem;line-height:1.15}
-  .trust-item span{font-size:.7rem}
+  /* Patrón común: secciones en HORIZONTAL deslizable (uno al lado del otro) */
+  .grid-3,.steps,.compare,.pain-grid{
+    display:flex!important;grid-template-columns:none!important;gap:14px;
+    overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    padding:4px 22px 16px;margin:0 -22px;scroll-padding:0 22px}
+  .grid-3::-webkit-scrollbar,.steps::-webkit-scrollbar,.compare::-webkit-scrollbar,.pain-grid::-webkit-scrollbar{height:6px}
+  .grid-3::-webkit-scrollbar-thumb,.steps::-webkit-scrollbar-thumb,.compare::-webkit-scrollbar-thumb,.pain-grid::-webkit-scrollbar-thumb{background:rgba(35,51,155,.25);border-radius:8px}
+  .grid-3 .card,.steps .step{flex:0 0 80%;scroll-snap-align:center;min-width:0}
+  .compare .comp-col{flex:0 0 88%;scroll-snap-align:center;min-width:0}
+  .pain-grid .pain{flex:0 0 70%;scroll-snap-align:center;min-width:0}
+  .note-strip{margin-top:6px}
 
-  /* Servicios: carrusel horizontal deslizable (no eterno) */
-  .grid-3{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;padding:4px 22px 16px;margin:0 -22px;scroll-padding:0 22px}
-  .grid-3::-webkit-scrollbar{height:6px}
-  .grid-3::-webkit-scrollbar-thumb{background:rgba(35,51,155,.25);border-radius:8px}
-  .grid-3 .card{flex:0 0 80%;scroll-snap-align:center;min-width:0}
+  /* Para mantenimiento: el texto arriba, los dolores en carrusel horizontal */
+  .maint .container{gap:24px}
+
+  /* Inicio (barra de confianza): tarjetas limpias 2x2 con ícono arriba */
+  .trustbar{padding:18px 0}
+  .trustbar .container{grid-template-columns:repeat(2,1fr);gap:12px;padding:0 18px}
+  .trust-item{flex-direction:column;text-align:center;align-items:center;gap:8px;padding:18px 12px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px}
+  .trust-item svg{width:28px;height:28px}
+  .trust-item b{font-size:.92rem;line-height:1.15}
+  .trust-item span{font-size:.72rem}
 
   /* Fotos de ingenieros: las 3 en horizontal */
   .proceso-fotos{grid-template-columns:repeat(3,1fr);gap:8px}
   .proceso-fotos figure{aspect-ratio:3/4;border-radius:12px}
 
-  /* Testimonios: varios visibles, estáticos (sin scroll infinito) */
-  .testi-cols{flex-direction:column;max-height:none;overflow:visible;gap:16px;
-    -webkit-mask-image:none;mask-image:none}
-  .testi-col{transform:none!important}
-  .testi-col.c2,.testi-col.c3{display:none}
-  .tcard{max-width:none;padding:24px}
+  /* Testimonios: SE MANTIENE el efecto cascada (no estáticos) */
+  .tcard{max-width:none}
 
   /* Mapa un poco más alto y marcador base más visible */
   #bajio-map{height:380px}
@@ -1565,7 +1572,6 @@ footer .fcities{color:#8b96b8;line-height:1.8}
   (function testiColumns(){
     var cols = document.querySelectorAll('#testiCols .testi-col');
     if(!cols.length) return;
-    if(window.innerWidth < 760) return; // en móvil: estáticos (varios visibles), sin animación
     var state = [];
     cols.forEach(function(col){
       col.innerHTML += col.innerHTML; // duplicar para bucle continuo
@@ -1669,9 +1675,10 @@ footer .fcities{color:#8b96b8;line-height:1.8}
           bajioMap.setFilter('cob-hl-fill', ['==',['get','_key'], key]);
           bajioMap.setFilter('cob-hl-line', ['==',['get','_key'], key]);
         }
-        // Punto brilloso: aparece y se mantiene encendido
+        // Punto brilloso: contenedor (lo posiciona MapLibre) + interior animado
         var flashEl = document.createElement('div');
-        flashEl.className = 'city-flash';
+        flashEl.className = 'city-flash-wrap';
+        flashEl.innerHTML = '<span class="city-flash"></span>';
         cityFlash = new maplibregl.Marker({ element: flashEl, anchor:'center' }).setLngLat(pt).addTo(bajioMap);
         // Mostrar el nombre mientras la ciudad está seleccionada
         if(!covPopup){ covPopup = new maplibregl.Popup({ closeButton:false, closeOnClick:false, offset:14 }); }
