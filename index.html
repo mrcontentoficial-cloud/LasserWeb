@@ -520,6 +520,27 @@ nav.main .container{display:flex;align-items:center;justify-content:space-betwee
 .tcard .nm{font-family:'Sora';font-weight:700;font-size:.95rem;line-height:1.25}
 .tcard .rl{font-size:.82rem;color:var(--soft);line-height:1.25}
 
+/* ===================== SOCIOS / CLIENTES (carrusel) ===================== */
+.clientes{position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(160deg,#0c1633 0%,#15265c 55%,#0c1633 100%)}
+.clientes .mesh{opacity:.25}
+.clientes .container{position:relative;z-index:2}
+.clientes .head-block h2{color:#fff}
+.clientes .head-block p{color:#bcc6ef}
+.clientes .kicker{color:#9FB0FF}
+.clientes-wrap{position:relative;z-index:2;overflow:hidden;margin-top:30px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.clientes-track{display:flex;align-items:center;gap:30px;width:max-content;will-change:transform}
+.client-logo{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:14px;
+  height:96px;min-width:230px;padding:0 34px;border-radius:16px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(159,176,255,.16)}
+.client-logo .cl-dot{width:9px;height:9px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 10px rgba(225,29,42,.7);flex-shrink:0}
+.client-logo .cl-name{font-family:'Sora';font-weight:800;font-size:1.5rem;color:#fff;white-space:nowrap;letter-spacing:-.01em}
+.client-logo img{max-height:54px;width:auto;display:block}
+.clientes-note{position:relative;z-index:2;text-align:center;margin-top:26px;font-size:.9rem;color:#9FB0FF}
+
 /* ===================== COVERAGE / MAP ===================== */
 .map-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:center}
 @media(max-width:900px){.map-wrap{grid-template-columns:1fr}}
@@ -1067,6 +1088,29 @@ footer .fcities{color:#8b96b8;line-height:1.8}
   </div>
 </section>
 
+<!-- ===================== SOCIOS / CLIENTES (carrusel automático) ===================== -->
+<!-- [LOGO] Para usar logos reales: reemplaza <span class="cl-name">Nombre</span>
+     por <img src="img-lasser/cliente-x.png" alt="Nombre"> dentro de cada .client-logo -->
+<section class="clientes" id="clientes">
+  <svg class="mesh dark" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="1200" height="600" fill="url(#circ)"/></svg>
+  <div class="container">
+    <div class="head-block head-center reveal">
+      <span class="kicker">// Confían en nosotros</span>
+      <h2>Plantas del corredor Castro del Río que atendemos</h2>
+      <p>Damos servicio a empresas del corredor industrial Castro del Río (Irapuato) y de todo el Bajío.</p>
+    </div>
+  </div>
+  <div class="clientes-wrap" id="clientesMarquee">
+    <div class="clientes-track">
+      <div class="client-logo"><span class="cl-dot"></span><span class="cl-name">Simaflex</span></div>
+      <div class="client-logo"><span class="cl-dot"></span><span class="cl-name">Ethan Allen</span></div>
+      <div class="client-logo"><span class="cl-dot"></span><span class="cl-name">De Acero</span></div>
+      <div class="client-logo"><span class="cl-dot"></span><span class="cl-name">Schaeffler</span></div>
+    </div>
+  </div>
+  <div class="container"><p class="clientes-note">Entre otras plantas del corredor industrial Castro del Río y el Bajío.</p></div>
+</section>
+
 <!-- ===================== COBERTURA ===================== -->
 <section class="section-alt" id="cobertura">
   <div class="container">
@@ -1420,6 +1464,33 @@ footer .fcities{color:#8b96b8;line-height:1.8}
     }
     // Esperar a que carguen las fuentes para medir bien el ancho
     if(document.fonts && document.fonts.ready){ document.fonts.ready.then(measure); }
+    requestAnimationFrame(step);
+  })();
+
+  // ===================== CARRUSEL DE CLIENTES (JS, automático) =====================
+  (function clientesMarquee(){
+    var wrap = document.getElementById('clientesMarquee');
+    if(!wrap) return;
+    var track = wrap.querySelector('.clientes-track');
+    if(!track) return;
+    track.innerHTML += track.innerHTML; // duplicar para bucle continuo
+    track.innerHTML += track.innerHTML; // pocos items: duplicar otra vez para llenar
+    var w = 0, offset = 0, speed = 40, last = null;
+    function measure(){ w = track.scrollWidth / 2; }
+    window.addEventListener('resize', measure);
+    document.addEventListener('visibilitychange', function(){ if(!document.hidden){ last = null; } });
+    window.addEventListener('load', measure);
+    function step(ts){
+      if(last === null) last = ts;
+      var dt = (ts - last) / 1000; last = ts;
+      if(!w) measure();
+      if(w){
+        offset += speed * dt;
+        if(offset >= w) offset -= w;
+        track.style.transform = 'translateX(' + (-offset) + 'px)';
+      }
+      requestAnimationFrame(step);
+    }
     requestAnimationFrame(step);
   })();
 
