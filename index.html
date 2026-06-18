@@ -314,27 +314,27 @@ nav.main .container{display:flex;align-items:center;justify-content:space-betwee
 @media(max-width:780px){.trustbar .container{grid-template-columns:repeat(2,1fr)}}
 
 /* ===================== URGENCIA ===================== */
-.urgency{position:relative;overflow:hidden;color:#fff;border-top:3px solid var(--red);
-  background:linear-gradient(100deg,#0a1230 0%,#16275e 50%,#0a1230 100%)}
-.urgency::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--red);
-  box-shadow:0 0 18px rgba(225,29,42,.7)}
+.urgency{position:relative;overflow:hidden;color:#fff;border-top:3px solid #ff6b74;
+  background:linear-gradient(100deg,#a8121c 0%,#E11D2A 50%,#a8121c 100%)}
+.urgency::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:#7d0c14;
+  box-shadow:0 0 16px rgba(0,0,0,.35)}
 .urgency::after{content:"";position:absolute;top:0;left:-35%;width:35%;height:100%;
-  background:linear-gradient(100deg,transparent,rgba(255,255,255,.08),transparent);
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);
   transform:skewX(-18deg);animation:urgSheen 5.5s linear infinite}
 @keyframes urgSheen{to{left:135%}}
 .urgency .container{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;
   gap:20px;padding:20px 22px;flex-wrap:wrap}
 .urg-msg{display:flex;align-items:center;gap:16px}
-.urg-icon{width:48px;height:48px;border-radius:13px;background:var(--red);display:flex;
-  align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 22px rgba(225,29,42,.5);
+.urg-icon{width:48px;height:48px;border-radius:13px;background:rgba(0,0,0,.22);display:flex;
+  align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 22px rgba(0,0,0,.3);
   animation:urgPulse 1.5s ease-in-out infinite}
 .urg-icon svg{width:27px;height:27px;color:#fff}
 @keyframes urgPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
-.urg-msg b{font-family:'Sora';font-weight:800;font-size:1.28rem;display:flex;align-items:center;gap:10px}
-.urg-msg b .live{width:9px;height:9px;border-radius:50%;background:#ff5b66;
-  box-shadow:0 0 0 0 rgba(255,91,102,.7);animation:urgLive 1.4s ease-out infinite}
-@keyframes urgLive{0%{box-shadow:0 0 0 0 rgba(255,91,102,.7)}100%{box-shadow:0 0 0 9px rgba(255,91,102,0)}}
-.urg-msg span{display:block;font-size:.94rem;color:#c4cdf0;margin-top:3px}
+.urg-msg b{font-family:'Sora';font-weight:800;font-size:1.28rem;color:#fff;display:flex;align-items:center;gap:10px}
+.urg-msg b .live{width:9px;height:9px;border-radius:50%;background:#fff;
+  box-shadow:0 0 0 0 rgba(255,255,255,.7);animation:urgLive 1.4s ease-out infinite}
+@keyframes urgLive{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}100%{box-shadow:0 0 0 9px rgba(255,255,255,0)}}
+.urg-msg span{display:block;font-size:.94rem;color:rgba(255,255,255,.9);margin-top:3px}
 .urg-cta{display:flex;gap:12px;flex-wrap:wrap}
 .urg-cta .btn{padding:13px 22px;font-size:.95rem}
 @media(max-width:680px){.urgency .container{flex-direction:column;align-items:flex-start}.urg-cta{width:100%}.urg-cta .btn{flex:1;justify-content:center}}
