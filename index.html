@@ -675,6 +675,44 @@ footer .fcities{color:#8b96b8;line-height:1.8}
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* ===================== OPTIMIZACIÓN MÓVIL ===================== */
+@media(max-width:760px){
+  section{padding:52px 0}
+  .head-block{margin-bottom:30px}
+  .head-center{margin-bottom:30px}
+  .head-block h2{font-size:1.7rem}
+
+  /* Barra de confianza: 2x2 compacto, ícono arriba */
+  .trustbar .container{grid-template-columns:repeat(2,1fr);gap:0}
+  .trust-item{flex-direction:column;text-align:center;align-items:center;gap:7px;padding:18px 10px}
+  .trust-item svg{width:26px;height:26px}
+  .trust-item b{font-size:.88rem;line-height:1.15}
+  .trust-item span{font-size:.7rem}
+
+  /* Servicios: carrusel horizontal deslizable (no eterno) */
+  .grid-3{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;padding:4px 22px 16px;margin:0 -22px;scroll-padding:0 22px}
+  .grid-3::-webkit-scrollbar{height:6px}
+  .grid-3::-webkit-scrollbar-thumb{background:rgba(35,51,155,.25);border-radius:8px}
+  .grid-3 .card{flex:0 0 80%;scroll-snap-align:center;min-width:0}
+
+  /* Fotos de ingenieros: las 3 en horizontal */
+  .proceso-fotos{grid-template-columns:repeat(3,1fr);gap:8px}
+  .proceso-fotos figure{aspect-ratio:3/4;border-radius:12px}
+
+  /* Testimonios: varios visibles, estáticos (sin scroll infinito) */
+  .testi-cols{flex-direction:column;max-height:none;overflow:visible;gap:16px;
+    -webkit-mask-image:none;mask-image:none}
+  .testi-col{transform:none!important}
+  .testi-col.c2,.testi-col.c3{display:none}
+  .tcard{max-width:none;padding:24px}
+
+  /* Mapa un poco más alto y marcador base más visible */
+  #bajio-map{height:380px}
+  .mlk.base{width:18px;height:18px}
+  .mlk.base .mlabel{font-size:12px}
+}
 </style>
 </head>
 <body>
@@ -1527,6 +1565,7 @@ footer .fcities{color:#8b96b8;line-height:1.8}
   (function testiColumns(){
     var cols = document.querySelectorAll('#testiCols .testi-col');
     if(!cols.length) return;
+    if(window.innerWidth < 760) return; // en móvil: estáticos (varios visibles), sin animación
     var state = [];
     cols.forEach(function(col){
       col.innerHTML += col.innerHTML; // duplicar para bucle continuo
